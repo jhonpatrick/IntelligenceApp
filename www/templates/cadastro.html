@@ -1,0 +1,31 @@
+<ion-view title="Cadastro" id="page5">
+    <ion-content padding="true" class="has-header">
+        <form id="cadastro-form3" class="list">
+            <ion-list id="cadastro-list3">
+                <label class="item item-input" id="cadastro-input5">
+                    <span class="input-label">Nome:</span>
+                    <input type="text" placeholder="Digite seu nome completo" ng-required="true" ng-model="inscrito.nome">
+                    <span class="assertive" ng-show="inscrito.nome.$invalid && inscrito.nome.$dirty">Campo Obrigatório!</span>
+                </label>
+                <label class="item item-input" id="cadastro-input6">
+                    <span class="input-label">Email:</span>
+                    <input type="email" placeholder="Digite seu email" ng-required="true" ng-model="inscrito.email">
+                    <span class="assertive" ng-show="inscrito.email.$invalid && inscrito.email.$dirty">Campo Obrigatório!</span>
+                </label>
+                <label class="item item-input" id="cadastro-input7">
+                    <span class="input-label">Senha:</span>
+                    <input type="password" placeholder="Digite sua senha" ng-required="true" ng-model="inscrito.senha">
+                    <span class="assertive" ng-show="inscrito.senha.$invalid && inscrito.senha.$dirty">Campo Obrigatório!</span>
+                </label>
+                <label class="item item-input" id="cadastro-input8">
+                    <span class="input-label">Celular: </span>
+                    <input type="text" placeholder="Digite seu celular" ng-required="true" ng-model="inscrito.celular">
+                    <span class="assertive" ng-show="inscrito.celular.$invalid && inscrito.celular.$dirty">Campo Obrigatório!</span>
+                </label>
+            </ion-list>
+            <div class="spacer" style="width: 300px; height: 18px;"></div>
+            <button ui-sref="login" id="cadastro-button4" style="border-radius:9px 9px 9px 9px;" class="button button-energized  button-block" ng-click="cadastrarUsuario(inscrito)">Confirmar Cadastro</button>
+        </form>
+        <div id="cadastro-button-bar1" class="button-bar"></div>
+    </ion-content>
+</ion-view>

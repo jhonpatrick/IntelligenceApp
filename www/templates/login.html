@@ -1,0 +1,32 @@
+<ion-view title="Login" hide-nav-bar="true" id="page4">
+    <ion-content padding="true" class="manual-ios-statusbar-padding" scroll="false">
+        <div class="spacer" style="height: 40px;"></div>
+        <div>
+            <img src="img/tb5Oy03fQ16v3yLJxSDw_logo_splash.png" width="60%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+        <div class="spacer" style="height: 40px;"></div>
+        <form name="inscritoForm">
+            <ion-list id="login-list2">
+                <label class="item item-input" id="login-input3">
+                    <span class="input-label">Email:</span>
+                    <input type="email" placeholder="Digite seu email" ng-required="true" ng-model="inscrito.email" name="email">
+            </label>
+                <label class="item item-input" id="login-input4">
+                    <span class="input-label">Senha:</span>
+                    <input type="password" placeholder="Digite sua senha" ng-required="true" ng-model="inscrito.senha" name="senha">
+            </label>
+            </ion-list>
+        </form>
+        <div ng-show="inscritoForm.email.$invalid && inscritoForm.email.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+            Campo email é inválido!
+        </div>
+        <div ng-show="inscritoForm.senha.$invalid && inscritoForm.senha.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;"> 
+            Campo senha é inválido!
+        </div>
+        <div class="spacer" style="height: 40px;"></div>
+        <button id="login-button1" style="color:#FFFFFF;border-radius:9px 9px 9px 9px;" class="button button-energized  button-block"
+            ng-click="fazerLogin(inscrito)">Entrar</button>
+        <button ui-sref="cadastro" id="login-button2" style="color:#FE7C00;font-size:12px;text-align:right;border-radius:9px 9px 9px 9px;"
+            class="button button-positive  button-block button-clear">Primeiro acesso? Cadastre-se!</button>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,9 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/Users/patri/Documents/myApps/IntelligenceApp/platforms/android/platform_www/cordova-js-src/android/promptbasednativeapi.js",
+        "C:/Users/patri/Documents/myApps/IntelligenceApp/www/js/app.js",
+        "C:/Users/patri/Documents/myApps/IntelligenceApp/platforms/android/platform_www/cordova-js-src/platform.js",
+        "C:/Users/patri/Documents/myApps/IntelligenceApp/platforms/android/platform_www/plugins/cordova-plugin-device/www/device.js",
+        "C:/Users/patri/Documents/myApps/IntelligenceApp/platforms/android/platform_www/plugins/cordova-plugin-splashscreen/www/splashscreen.js"
+    ]
+}
