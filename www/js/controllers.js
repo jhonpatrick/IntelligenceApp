@@ -20,13 +20,10 @@ angular.module('app.controllers', [])
         // post
         $http(req).then(function successCallback (data) {
           // msg de sucesso
-          console.log('Post Success', data.data);
-          $cordovaToast.show('Sucesso', 'short', 'center');
         }, function errorCallback (data) {
           // msg de erro
-          console.log('Post Erro');
         });
-        
+        $cordovaToast.show('Sucesso', 'short', 'center');
       };
     }])
 

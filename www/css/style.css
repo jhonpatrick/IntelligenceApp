@@ -30,3 +30,18 @@ ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidt
     list-style-type: decimal;
     padding-left: 40px;
 }
+
+.tda-btn-energized {
+    border-color: transparent;
+    background-color: #e59100;
+    color: #fff;
+}
+
+.tda-btn-energized:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.tda-btn-energized.active, .tda-btn-energized.activated {
+    background-color: #d17300;
+}

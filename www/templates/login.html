@@ -7,26 +7,31 @@
         <div class="spacer" style="height: 40px;"></div>
         <form name="inscritoForm">
             <ion-list id="login-list2">
-                <label class="item item-input" id="login-input3">
-                    <span class="input-label">Email:</span>
+                <label class="item item-icon-left" id="login-input3">
+                    <i class="icon ion-at placeholder-icon"></i>
                     <input type="email" placeholder="Digite seu email" ng-required="true" ng-model="inscrito.email" name="email">
-            </label>
-                <label class="item item-input" id="login-input4">
-                    <span class="input-label">Senha:</span>
-                    <input type="password" placeholder="Digite sua senha" ng-required="true" ng-model="inscrito.senha" name="senha">
-            </label>
+                </label>
+                <div class="spacer" style="height: 10px;"></div>
+                <label class="item item-icon-left item-button-right" id="login-input4">
+                    <i class="icon ion-lock-combination placeholder-icon"></i>
+                    <input type="password" placeholder="Digite sua senha" ng-required="true" ng-model="inscrito.senha" name="senha" id="idSenha">
+                    <button class="button button-clear" style="margin-top:10px;" ng-click="mostrarSenha()">
+                        <i class="icon ion-eye"></i>
+                    </button>
+                </label>
             </ion-list>
+            <div class="spacer" style="height: 5px;"></div>
+            <div ng-show="inscritoForm.email.$invalid && inscritoForm.email.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+                Campo email é inválido!
+            </div>
+            <div ng-show="inscritoForm.senha.$error.required && inscritoForm.senha.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+                Campo senha é inválido!
+            </div>
+            <div class="spacer" style="height: 40px;"></div>
+            <button id="login-button1" style="color:#FFFFFF;border-radius:9px 9px 9px 9px;" class="button tda-btn-energized button-block"
+                ng-click="fazerLogin(inscrito)">Entrar</button>
+            <button ui-sref="cadastro" id="login-button2" style="color:#FE7C00;font-size:12px;text-align:right;border-radius:9px 9px 9px 9px;"
+                class="button button-positive  button-block button-clear">Primeiro acesso? Cadastre-se!</button>
         </form>
-        <div ng-show="inscritoForm.email.$invalid && inscritoForm.email.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
-            Campo email é inválido!
-        </div>
-        <div ng-show="inscritoForm.senha.$invalid && inscritoForm.senha.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;"> 
-            Campo senha é inválido!
-        </div>
-        <div class="spacer" style="height: 40px;"></div>
-        <button id="login-button1" style="color:#FFFFFF;border-radius:9px 9px 9px 9px;" class="button button-energized  button-block"
-            ng-click="fazerLogin(inscrito)">Entrar</button>
-        <button ui-sref="cadastro" id="login-button2" style="color:#FE7C00;font-size:12px;text-align:right;border-radius:9px 9px 9px 9px;"
-            class="button button-positive  button-block button-clear">Primeiro acesso? Cadastre-se!</button>
     </ion-content>
 </ion-view>
