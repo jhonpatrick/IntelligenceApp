@@ -19,11 +19,21 @@ angular.module('app.controllers', [])
         console.log("Enviando Inscrito JSON - ", inscrito);
         // post
         $http(req).then(function successCallback (data) {
-          // msg de sucesso
-        }, function errorCallback (data) {
+          // msg de Sucesso
+          console.log(data.status);
+          var retorno = data.data;
+          var lg = retorno.login;
+          if(lg == false){
+            //console.log(lg);
+            console.log(retorno);
+          }else{
+             console.log(retorno);
+          }
+        },function errorCallback (data) {
           // msg de erro
+
         });
-        $cordovaToast.show('Sucesso', 'short', 'center');
+        //$cordovaToast.show('Sucesso', 'short', 'center');
       };
     }])
 
