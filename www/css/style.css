@@ -45,3 +45,13 @@ ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidt
 .tda-btn-energized.active, .tda-btn-energized.activated {
     background-color: #d17300;
 }
+
+.tda-btn-link {
+    background-color: transparent;
+    float: left;
+}
+
+.tda-btn-link.active, .tda-btn-link.activated {
+    background-color: transparent;
+    
+}

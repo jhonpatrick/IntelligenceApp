@@ -1,30 +1,57 @@
-<ion-view title="Cadastro" id="page5">
+<ion-view title="Cadastro" id="page2" name="cadastro">
     <ion-content padding="true" class="has-header">
-        <form id="cadastro-form3" class="list">
-            <ion-list id="cadastro-list3">
-                <label class="item item-input" id="cadastro-input5">
-                    <span class="input-label">Nome:</span>
-                    <input type="text" placeholder="Digite seu nome completo" ng-required="true" ng-model="inscrito.nome">
-                    <span class="assertive" ng-show="inscrito.nome.$invalid && inscrito.nome.$dirty">Campo Obrigatório!</span>
+        <form id="cadastro-form1" class="list" name="cadastroForm">
+            <div class="list">
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Nome</span>
+                    <input type="text" placeholder="Digite seu nome completo" ng-required="true" ng-model="inscrito.nome" name="nome">
                 </label>
-                <label class="item item-input" id="cadastro-input6">
-                    <span class="input-label">Email:</span>
-                    <input type="email" placeholder="Digite seu email" ng-required="true" ng-model="inscrito.email">
-                    <span class="assertive" ng-show="inscrito.email.$invalid && inscrito.email.$dirty">Campo Obrigatório!</span>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Email</span>
+                    <input type="email" placeholder="Digite seu email" ng-required="true" ng-model="inscrito.email" name="email">
                 </label>
-                <label class="item item-input" id="cadastro-input7">
-                    <span class="input-label">Senha:</span>
-                    <input type="password" placeholder="Digite sua senha" ng-required="true" ng-model="inscrito.senha">
-                    <span class="assertive" ng-show="inscrito.senha.$invalid && inscrito.senha.$dirty">Campo Obrigatório!</span>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Senha</span>
+                    <input type="password" placeholder="Digite sua senha" ng-required="true" ng-model="inscrito.senha1" name="senha1">
                 </label>
-                <label class="item item-input" id="cadastro-input8">
-                    <span class="input-label">Celular: </span>
-                    <input type="text" placeholder="Digite seu celular" ng-required="true" ng-model="inscrito.celular">
-                    <span class="assertive" ng-show="inscrito.celular.$invalid && inscrito.celular.$dirty">Campo Obrigatório!</span>
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Confirmar Senha</span>
+                    <input type="password" placeholder="Confirme sua senha" ng-required="true" ng-model="inscrito.senha2" name="senha2">
                 </label>
-            </ion-list>
+                <label class="item item-select" id="cadastro-select1">
+                    <span class="input-label">Estado</span>
+                    <select ng-required="true" ng-model="inscrito.estado" name="estado">
+                        <option>Selecione um Estado</option>
+                    </select>
+                </label>
+                <label class="item item-select" id="cadastro-select2">
+                    <span class="input-label">Cidade</span>
+                    <select ng-required="true" ng-model="inscrito.cidade" name="cidade">
+                        <option>Selecione uma Cidade</option>
+                    </select>
+                </label>
+            </div>
+            <div class="spacer" style="height: 5px;"></div>
+            <div ng-show="cadastroForm.email.$invalid && cadastroForm.email.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+                Campo email é inválido!
+            </div>
+            <div ng-show="cadastroForm.senha1.$error.required && cadastroForm.senha1.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+                Campo senha é inválido!
+            </div>
+            <div ng-show="cadastroForm.senha2.$error.required && cadastroForm.senha2.$dirty && cadastroForm.senha2 != cadastroForm.senha1"
+                class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+                Campo confirma senha é inválido!
+            </div>
+            <div ng-show="cadastroForm.estado.$error.required && cadastroForm.estado.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+                Campo senha é inválido!
+            </div>
+            <div ng-show="cadastroForm.cidade.$error.required && cadastroForm.cidade.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+                Campo senha é inválido!
+            </div>
             <div class="spacer" style="width: 300px; height: 18px;"></div>
-            <button ui-sref="login" id="cadastro-button4" style="border-radius:9px 9px 9px 9px;" class="button tda-btn-energized  button-block" ng-click="cadastrarUsuario(inscrito)">Confirmar Cadastro</button>
+            <button ng-disabled="cadastroForm.$invalid" ui-sref="login" id="cadastro-button4" style="border-radius:9px 9px 9px 9px;"
+                class="button tda-btn-energized  button-block" ng-click="cadastrarUsuario(inscrito)">Confirmar Cadastro</button>
         </form>
         <div id="cadastro-button-bar1" class="button-bar"></div>
     </ion-content>
