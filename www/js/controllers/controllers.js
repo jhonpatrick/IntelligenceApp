@@ -38,13 +38,18 @@ angular.module('app.controllers', [])
             }
             // post
             $http(configRequestHttp).then(function successCallback (data) {
-              console.log('Requisição deu certo')
+              console.log('Requisição wifi deu certo')
               // msg de Sucesso
               var retorno = data.data
               console.log('Retorno Serv = ' + retorno);
               if (retorno.login == true) {
                 console.log('Login: ' + retorno.login);
                 $cordovaToast.show('Login com sucesso!', 'short', 'center')
+                //salvando dados em cache
+                localStorage.setItem("loginInscrito", retorno.login);
+                localStorage.setItem("emailInscrito", retorno.email);
+                localStorage.setItem("nomeInscrito", retorno.nome);
+                localStorage.setItem("senhaInscrito", retorno.senha);
                 loadingHide()
                 $location.path('/side-menu');              
               }else {
@@ -61,7 +66,7 @@ angular.module('app.controllers', [])
               loadingHide()
               // msg de erro
               $cordovaToast.show('Serviço indisponível no momento. Tente mais tarde!', 'long', 'center')
-              console.log('Requisição Falhou')
+              console.log('Requisição wifi Falhou')
             })
           }
 
@@ -91,12 +96,14 @@ angular.module('app.controllers', [])
                   }
                   // post
                   $http(req).then(function successCallback (data) {
+                    console.log('Requisição Rede-3G deu certo')
                     // msg de Sucesso
                     var retorno = data.data
                     if (retorno.login == true) {
                       $cordovaToast.show('Login com sucesso!', 'short', 'center')
                     }
                   }, function errorCallback (data) {
+                    console.log('Requisição Rede-3G Falhou')
                     // msg de erro
                     $cordovaToast.show('Serviço indisponível no momento. Tente mais tarde!', 'short', 'center')
                   })
@@ -121,27 +128,29 @@ angular.module('app.controllers', [])
     }])
 
   .controller('intelligenceCtrl', ['$scope', '$stateParams',
-    // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    
+    function ($scope, $stateParams) {
+      var nomeAux = localStorage.getItem("nomeInscrito").split(" ");
+      document.getElementById("nomeInscrito").innerHTML = nomeAux[0] + " " + nomeAux[1];
+      document.getElementById("emailInscrito").innerHTML = localStorage.getItem("emailInscrito");
+    }])
+
+  .controller('inicioCtrl', ['$scope', '$stateParams', 
+    function ($scope, $stateParams) {
+      var nomeAux = localStorage.getItem("nomeInscrito").split(" ");
+      document.getElementById("inicioPageNomeInscrito").innerHTML = nomeAux[0] + " " + nomeAux[1];
+      document.getElementById("inicioPageEmailInscrito").innerHTML = localStorage.getItem("emailInscrito");
+    }])
+
+  .controller('perfilCtrl', ['$scope', '$stateParams', 
+    function ($scope, $stateParams) {
+      var nomeAux = localStorage.getItem("nomeInscrito").split(" ");
+      document.getElementById("nomeInscrito").innerHTML = nomeAux[0] + " " + nomeAux[1];
+      document.getElementById("emailInscrito").innerHTML = localStorage.getItem("emailInscrito");
+    }])
+
+  .controller('inscrevaSeCtrl', ['$scope', '$stateParams', 
     function ($scope, $stateParams) {}])
 
-  .controller('inicioCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {}])
-
-  .controller('perfilCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {}])
-
-  .controller('inscrevaSeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {}])
-
-  .controller('comprovantesCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+  .controller('comprovantesCtrl', ['$scope', '$stateParams', 
     function ($scope, $stateParams) {}])
