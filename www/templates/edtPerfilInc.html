@@ -1,0 +1,71 @@
+<ion-view id="page7">
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear icon ion-close-round" ng-click="carregarInicio()"></button>
+        </ion-nav-buttons>
+        <ion-nav-title class="title">{{edtPerfil}}</ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button style="color: #FE7C00;" class="button button-icon button-clear button-positive icon ion-checkmark-round" ng-click="carregarPerfilEditado()"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content padding="true" class="has-header" style="background-image: url('img/fundo_perfil.jpg'); background-size: cover;">
+        <form id="perfil-form7" class="list" name="formEdtPerfilInscrito">
+            <div class="spacer" style="height: 50px;"></div>
+            <div class="card">
+                <div class="tda-img-float">
+                    <img class="tda-img-redondo" id="idFtPerfil" ng-src="{{imageDePerfilEdt}}">
+                </div>
+                <div class="tda-img-icon-float">
+                    <button class="button button-calm tda-img-redondo button-icon icon ion-camera" style="padding-top: 5px;" ng-click="mudarFotoPerfil()">
+                        <br/>Editar Foto
+                    </button>
+                </div>
+                <div class="spacer" style="height: 70px;"></div>
+                <div class="list">
+                    <label class="item item-input">
+                        <span class="input-label">Nome:</span>
+                        <input type="text" placeholder="Digite seu nome completo" id="idInputNome" value="{{inscritos.nome}}" ng-required="true" >
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">CPF:</span>
+                        <input type="number" placeholder="Digite seu CPF " id="idInputCpf" value="{{inscritos.cpf}}" ng-required="true" >
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">RG:</span>
+                        <input type="number" placeholder="Digite seu RG" id="idInputRg" value="{{inscritos.rg}}" ng-required="true" >
+                    </label>
+                    <label class="item item-input item-select" id="perfil-select1">
+                        <span class="input-label">Sexo:</span>
+                        <select id="idSelectSexo" ng-required="true" >
+                            <option ng-hide="true">Selecione o sexo</option>
+                            <option id="idOpSexoM">Masculino</option>
+                            <option id="idOpSexoF">Feminino</option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-select" id="perfil-select2">
+                        <span class="input-label">Estado/UF</span>
+                        <select id="idSelectUf" ng-required="true" >
+                            <option ng-hide="true">Selecione o estado</option>
+                            <option ng-hide="true" id="idOpUf"></option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-select" id="perfil-select3">
+                        <span class="input-label">Cidade</span>
+                        <select id="idSelectCid" ng-required="true" >
+                            <option ng-hide="true">Selecione a cidade</option>
+                            <option ng-hide="true" id="idOpCid">Selecione a cidade</option>
+                        </select>
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Inst/Emp:</span>
+                        <input type="text" placeholder="Instituição/Empresa" id="idInputIes" value="{{inscritos.ies}}" ng-required="true" >
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Celular:</span>
+                        <input type="text" placeholder="Digite seu celular" id="idInputCel" value="{{inscritos.celular}}" ng-required="true" >
+                    </label>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

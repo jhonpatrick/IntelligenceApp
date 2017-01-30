@@ -1,40 +1,62 @@
-<ion-view title="Login" hide-nav-bar="true" id="page1">
-    <ion-content padding="true" class="manual-ios-statusbar-padding" scroll="true">
-        <div class="spacer" style="height: 30px;"></div>
-        <div>
-            <img src="img/tb5Oy03fQ16v3yLJxSDw_logo_splash.png" width="50%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
-        </div>
-        <div class="spacer" style="height: 30px;"></div>
-        <form name="inscritoForm" id="inscrito-form1">
-            <ion-list id="login-list2">
-                <div class="item item-icon-left">
-                    <i class="icon ion-at placeholder-icon"></i>
-                    <input type="email" placeholder="Digite seu email" ng-required="true" ng-model="inscrito.email" name="email" >
+    <ion-view hide-nav-bar="true" id="page1">
+        <ion-content padding="true" class="manual-ios-statusbar-padding" scroll="true" 
+            style=" background-image: url('img/login_fundo_quadrado_2.jpg'); background-size: cover" >
+            <div class="spacer" style="height: 30px;"></div>
+            <div>
+                <img src="img/logo_splash.png" width="40%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+            </div>
+            <div class="spacer" style="height: 30px;"></div>
+            <form name="inscritoForm" id="inscrito-form1">
+                <ion-list id="login-list2" class="list">
+                    <div class="item item-icon-left">
+                        <i class="icon ion-at placeholder-icon" style="font-size: 25px"></i>
+                        <input type="email" placeholder="Digite seu email" ng-required="true" ng-model="usuario.email" name="email" id="idEmail">
+                    </div>
+                    <div class="spacer" style="height: 5px;"></div>
+                    <div class="item item-icon-left item-icon-right">
+                        <i class="icon ion-lock-combination placeholder-icon " style="font-size: 25px"></i>
+                        <input type="password" placeholder="Digite sua senha" ng-required="true" ng-model="usuario.senha" name="senha" id="idSenha" >
+                        <button type="button" id="idBntMostrarSenha" class="button button-light icon" ng-click="mostrarSenha()" >
+                            <i class="icon ion-eye placeholder-icon" id="idIconMostrarSenha"></i>
+                        </button>
+                    </div>
+                    <div style="margin-left: -19px;">
+                        <ion-checkbox class="tda-checkbox item-placeholder" id="idCheckboxConect" 
+                            ng-model="salvaConexao.checked" ng-change="salvaConexaoChange()">Manter-me Conectado</ion-checkbox>
+                    </div>
+                </ion-list>
+                <div class="spacer" style="height: 50px;"></div>
+                <div ng-show="inscritoForm.email.$invalid && inscritoForm.email.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+                    Campo email é inválido!
                 </div>
+                <div ng-show="inscritoForm.senha.$error.required && inscritoForm.senha.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+                    Campo senha é inválido!
+                </div>
+                <div id="msgSuccess" ></div>
+                <div id="msgErro" ></div> 
                 <div class="spacer" style="height: 10px;"></div>
-                <div class="item item-icon-left ">
-                    <i class="icon ion-lock-combination placeholder-icon"></i>
-                    <input type="password" placeholder="Digite sua senha" ng-required="true" ng-model="inscrito.senha" name="senha" id="idSenha" >
+                <button style="color:#FFFFFF;border-radius:9px 9px 9px 9px;" class="button tda-btn-energized button-block"
+                    ng-click="fazerLogin(usuario)" >Entrar</button>
+                <div class="row">
+                    <div class="col col-30"><hr style="background: #eeeeee"></div>
+                    <div class="col col-40"><p style="color:#FE7C00;font-size:14px; text-align: center; 
+                        text-decoration: none;">Conecte-se com</p></div>
+                    <div class="col col-30"><hr style="background: #eeeeee"></div>
                 </div>
-            </ion-list>
-            <div class="spacer" style="height: 5px;"></div>
-            <div ng-show="inscritoForm.email.$invalid && inscritoForm.email.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
-                Campo email é inválido!
-            </div>
-            <div ng-show="inscritoForm.senha.$error.required && inscritoForm.senha.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
-                Campo senha é inválido!
-            </div>
-            <div id="msgSuccess" ></div>
-            <div id="msgErro" ></div> 
-            <div class="spacer" style="height: 40px;"></div>
-            <button style="color:#FFFFFF;border-radius:9px 9px 9px 9px;" class="button tda-btn-energized button-block"
-                ng-click="fazerLogin(inscrito)" >Entrar</button>
-            <div class="row">
-                <div class="col col-60 col-offset-50">
-                    <a ui-sref="cadastro" id="login-button2" style="color:#FE7C00;font-size:12px; text-align:right; 
-                    text-decoration: none; ">Primeiro acesso? Cadastre-se!</a>
+                <div class="row">
+                    <div class="col col-50">
+                        <a class="button button-assertive icon-left ion-social-google button-block" ng-click="googleSignIn()">Google</a>
+                    </div>
+                    <div class="col col-50">
+                        <a class="button button-positive icon-left ion-social-facebook button-block" ng-click="facebookSignIn()">Facebook</a>
+                    </div>
+                </div>
+            </form>
+            <div class="bar bar-footer tda-footer">
+                <div class="title">
+                    <a ng-click="carregarCadastro()" id="login-button2" style="color:#FE7C00;font-size:14px; text-align:center; 
+                        text-decoration: none; ">Primeiro acesso? Cadastre-se!</a>
                 </div>
             </div>
-        </form>
-    </ion-content>
-</ion-view>
+        </ion-content>
+    </ion-view>

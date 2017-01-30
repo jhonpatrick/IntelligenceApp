@@ -1,8 +1,8 @@
 angular.module('app.routes', [])
-
-  .config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider
-
+.config(function ($stateProvider, $urlRouterProvider) { 
+ 
+ $stateProvider
+ 
       .state('login', {
         url: '/loginPage',
         templateUrl: 'templates/login.html',
@@ -16,7 +16,7 @@ angular.module('app.routes', [])
       })
 
       .state('intelligence', {
-        url: '/side-menu',
+        url: '/menuIntelligence',
         templateUrl: 'templates/intelligence.html',
         controller: 'intelligenceCtrl'
       })
@@ -27,30 +27,16 @@ angular.module('app.routes', [])
         controller: 'perfilCtrl'
       })
 
-      .state('intelligence.inicio', {
-        url: '/inicioPage',
-        views: {
-          'side-menu': {
-            templateUrl: 'templates/inicio.html',
-            controller: 'inicioCtrl'
-          }
-        }
-      })
-
-      .state('intelligence.perfil', {
-        url: '/perfilPage',
-        views: {
-          'side-menu': {
-            templateUrl: 'templates/perfil.html',
-            controller: 'perfilCtrl'
-          }
-        }
+      .state('edtPerfilInc', {
+        url: '/edtPerfilIncPage',
+        templateUrl: 'templates/edtPerfilInc.html',
+        controller: 'edtPerfilIncCtrl'
       })
 
       .state('intelligence.inscrevaSe', {
         url: '/inscrevasePage',
         views: {
-          'side-menu': {
+          'menuView': {
             templateUrl: 'templates/inscrevaSe.html',
             controller: 'inscrevaSeCtrl'
           }
@@ -60,12 +46,11 @@ angular.module('app.routes', [])
       .state('intelligence.comprovantes', {
         url: '/comprovantesPage',
         views: {
-          'side-menu': {
+          'menuView': {
             templateUrl: 'templates/comprovantes.html',
             controller: 'comprovantesCtrl'
           }
         }
       })
-
     $urlRouterProvider.otherwise('/loginPage')
-  })
+})

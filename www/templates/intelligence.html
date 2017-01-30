@@ -1,60 +1,44 @@
-<ion-side-menus enable-menu-with-back-views="true" >
+<ion-side-menus>
   <ion-side-menu-content>
+    <ion-nav-view name="menuView" animation="slide-left-right">
+    </ion-nav-view>
     <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button></ion-nav-back-button>
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        <button class="button button-icon icon ion-navicon" menu-toggle="left"></button>
       </ion-nav-buttons>
-       <ion-nav-buttons side="right" class="has-header">
-        <button class="button button-icon icon ion-android-notifications"></button>
+      <ion-nav-title class="title">{{inicio}}</ion-nav-title>
+      <ion-nav-buttons side="right">
+        <button class="button button-clear button-icon icon ion-android-notifications" ng-click="openPopover($event)"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-nav-view name="side-menu" ></ion-nav-view>
-    <div class="spacer" style="height: 50px;"></div>
-    <div class="list card">
-      <div class="item item-avatar">
-        <img src="img/tb5Oy03fQ16v3yLJxSDw_logo_splash.png">
-        <h2 style="margin-top: 10px" id="nomeInscrito"></h2>
-        <p id="emailInscrito"></p>
-      </div>
-      <div class="item item-body">
-        <img class="full-image" src="img/tb5Oy03fQ16v3yLJxSDw_logo_splash.png">
-        <p>
-          This is a "Facebook" styled Card. The header is created from a Thumbnail List item, the content is from a card-body consisting
-          of an image and paragraph text. The footer consists of tabs, icons aligned left, within the card-footer.
-        </p>
-        <p>
-          <a href="#" class="subdued">1 Like</a>
-          <a href="#" class="subdued">5 Comments</a>
-        </p>
-      </div>
-    </div>
   </ion-side-menu-content>
-  <ion-side-menu side="left" id="side-menu" style="background-color:#383D46;">
-    <ion-content padding="true" style="top:0px !important;" class="side-menu-left ">
+  <ion-side-menu side="left" expose-aside-when="large">
+    <ion-content padding="true" style="top:0px !important; background-color: #383D46" class="side-menu-left ">
       <div class="spacer" style="width: 248px; height: 20px;"></div>
       <div>
-        <img src="img/wZoffyeKRCzCpi2zEBip_logo_larg.png" width="85%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+        <img src="img/logo_larg.png" width="85%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
       </div>
       <div class="spacer" style="width: 248px; height: 20px;"></div>
-      <ion-list id="intelligence-list1">
-        <ion-item class="item-icon-left" id="intelligence-list-item1" ui-sref="intelligence.inicio" menu-close="">
-          <i class="icon ion-home"></i>Início</ion-item>
-        <ion-item class="item-icon-left" id="intelligence-list-item2" ui-sref="intelligence.perfil" menu-close="">
-          <i class="icon ion-android-person"></i>Perfil</ion-item>
-        <ion-item class="item-icon-left" id="intelligence-list-item3" ui-sref="intelligence.inscrevaSe" menu-close="">
-          <i class="icon ion-android-calendar"></i>Inscreva-se</ion-item>
-        <ion-item class="item-icon-left item-icon-right" id="intelligence-list-item4">
-          <i class="icon ion-android-list"></i>Eventos
-          <i class="icon ion-android-arrow-dropright icon-accessory"></i>
-        </ion-item>
-        <ion-item class="item-icon-left" id="intelligence-list-item5" ui-sref="intelligence.comprovantes" menu-close="">
-          <i class="icon ion-android-document"></i>Comprovantes</ion-item>
-        <ion-item class="item-icon-left" id="intelligence-list-item6" menu-close="">
-          <i class="icon ion-android-settings"></i>Configurações</ion-item>
-        <ion-item class="item-icon-left" id="intelligence-list-item7" ui-sref="login" menu-close="">
-          <i class="icon ion-power"></i>Sair</ion-item>
-      </ion-list>
+      <div class="list" id="intelligence-list1">
+        <div class="item item-icon-left tda-list-item" id="intelligence-list-item1" menu-close="" ng-click="carregarInicio()">
+          <i class="icon ion-home"></i>Início
+        </div>
+        <div class="item item-icon-left tda-list-item" id="intelligence-list-item2" menu-close="" ng-click="carregarPerfil()">
+          <i class="icon ion-android-person"></i>Perfil
+        </div>
+        <div class="item item-icon-left tda-list-item" id="intelligence-list-item3" ui-sref="intelligence.inscrevaSe" menu-close="">
+          <i class="icon ion-android-calendar"></i>Inscreva-se
+        </div>
+        <div class="item item-icon-left tda-list-item" id="intelligence-list-item4">
+          <i class="icon icon ion-android-list"></i>Eventos
+        </div>
+        <div class="item item-icon-left tda-list-item" id="intelligence-list-item5" ui-sref="intelligence.comprovantes" menu-close="">
+          <i class="icon ion-android-document"></i>Comprovantes
+        </div>
+        <div class="item item-icon-left tda-list-item" id="intelligence-list-item7" menu-close="" ng-click="sairApp()">
+          <i class="icon ion-power"></i>Sair
+        </div>
+      </div>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>

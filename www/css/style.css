@@ -15,7 +15,7 @@ ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
     margin-right: -10px;
 }
 
-ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+ion-list.manual-list-fullwidth div.list > .tda-item, .list.card.manual-card-fullwidth > .tda-item {
     border-radius: 0px;
     border-left: 0px;
     border-right: 0px;
@@ -53,5 +53,60 @@ ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidt
 
 .tda-btn-link.active, .tda-btn-link.activated {
     background-color: transparent;
-    
 }
+
+.tda-list-item {
+    background-color: #383D46;
+    color: #fff;
+    border: none;
+}
+
+.tda-checkbox {
+    color: #FE7C00;
+    font-size: 12px;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    float: left;
+}
+
+.tda-footer {
+    position: static;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+}
+
+.tda-img-redondo {
+    width: 100%;
+    height: 100%;
+    box-shadow: -1px 1px 3px #ddd;
+}
+
+.tda-img-float {
+    width: 125px;
+    height: 125px;
+    padding: 0px;
+    position: absolute;
+    top: 3%;
+    border: 3px solid white;
+    border-radius: 50%;
+    margin-left: 33%;
+    overflow: hidden;
+    background: silver;
+}
+
+.tda-img-icon-float {
+    width: 125px;
+    height: 125px;
+    padding: 0px;
+    position: absolute;
+    top: 3%;
+    border: 3px solid #eee;
+    border-radius: 48%;
+    margin-left: 33%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, .5);
+}
+
