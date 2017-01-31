@@ -346,34 +346,36 @@ angular.module('app.controllers', [])
     function($scope, $stateParams, $http, $cordovaToast,
         $cordovaNetwork, $ionicLoading, $ionicPopup, $location, $timeout, $q, $cordovaCamera, $ionicActionSheet) {
         $scope.edtPerfil = 'Editar Perfil'
-        $scope.carregarInicio = function() {
-            $location.path('/perfilPage')
-        }
-        $scope.carregarPerfilEditado = function() {
-            $location.path('/perfilPage')
-        }
         var usuario = JSON.parse(window.localStorage.getItem('usuario'))
         var inscrito = JSON.parse(window.localStorage.getItem('inscrito'))
         var imgPerfilInscri = inscrito.foto
         var iconPerfil = document.getElementById('idFtPerfil')
         var idUser = usuario.id
-        $scope.inscritos = inscrito
-        if (inscrito.sexo === 'M') {
-            if (imgPerfilInscri === '') {
-                iconPerfil.src = 'img/user_male.png'
-            } else {
-                iconPerfil.src = 'http://tda.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri
-            }
-        }
-        if (inscrito.sexo === 'F') {
-            if (imgPerfilInscri === '') {
-                iconPerfil.src = 'img/user_female.png'
-            } else {
-                iconPerfil.src = 'http://tda.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri
-            }
-        }
-        $scope.mudarFotoPerfil = function() {
 
+        function getInscrito(inscrito) {
+            $scope.inscritos = inscrito
+            if (inscrito.sexo === 'M') {
+                if (imgPerfilInscri === '') {
+                    iconPerfil.src = 'img/user_male.png'
+                } else {
+                    iconPerfil.src = 'http://tda.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri
+                }
+            }
+            if (inscrito.sexo === 'F') {
+                if (imgPerfilInscri === '') {
+                    iconPerfil.src = 'img/user_female.png'
+                } else {
+                    iconPerfil.src = 'http://tda.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri
+                }
+            }
+        }
+        getInscrito(inscrito);
+        $scope.carregarPerfil = function() {
+            getInscrito(inscrito);
+            $location.path('/perfilPage')
+        }
+
+        $scope.mudarFotoPerfil = function() {
             // Show the action sheet
             var hideSheet = $ionicActionSheet.show({
                 buttons: [
@@ -383,7 +385,7 @@ angular.module('app.controllers', [])
                 titleText: '<h5>Formas de Edição</h5>',
                 cancelText: 'Cancel',
                 cancel: function() {
-                    console.log('cancelando')
+                    console.log('cancelando ActionSheet')
                 },
                 buttonClicked: function(index) {
                     console.log('index', index)
@@ -391,17 +393,17 @@ angular.module('app.controllers', [])
                         case 0:
                             // Recuperar foto como uma imagem codificada em base64
                             var options = {
-                                quality: 100,
+                                quality: 50,
                                 destinationType: Camera.DestinationType.DATA_URL,
                                 sourceType: Camera.PictureSourceType.CAMERA,
-                                allowEdit: false,
+                                allowEdit: true,
                                 encodingType: Camera.EncodingType.JPEG,
-                                targetWidth: 300,
-                                targetHeight: 300,
+                                targetWidth: 100,
+                                targetHeight: 100,
                                 popoverOptions: CameraPopoverOptions,
                                 saveToPhotoAlbum: false,
-                                correctOrientation: false
-                            }
+                                correctOrientation: true
+                            };
 
                             $cordovaCamera.getPicture(options).then(function(imageData) {
                                 $scope.imageDePerfilEdt = 'data:image/jpeg;base64,' + imageData
@@ -417,14 +419,14 @@ angular.module('app.controllers', [])
                             var options = {
                                 quality: 100,
                                 destinationType: Camera.DestinationType.DATA_URL,
-                                sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
                                 allowEdit: false,
                                 encodingType: Camera.EncodingType.JPEG,
-                                targetWidth: 300,
+                                targetWidth: 230,
                                 targetHeight: 300,
                                 popoverOptions: CameraPopoverOptions,
                                 saveToPhotoAlbum: false,
-                                correctOrientation: false
+                                correctOrientation: true
                             }
 
                             $cordovaCamera.getPicture(options).then(function(imageData) {
@@ -436,11 +438,15 @@ angular.module('app.controllers', [])
                             })
 
                             break;
-
                     }
                     return true
                 }
+
             })
+            $scope.carregarPerfilEditado = function() {
+                //$location.path('/perfilPage')
+
+            }
         }
     }
 ])
