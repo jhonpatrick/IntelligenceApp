@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <ion-view id="page2">
     <ion-nav-bar class="bar-stable">
         <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-arrow-left-c" ng-click="carregarLogin()"></button>
         </ion-nav-buttons>
-		<ion-nav-title class="title">{{cadastro}}</ion-nav-title>
-	</ion-nav-bar>
+        <ion-nav-title class="title">{{cadastro}}</ion-nav-title>
+    </ion-nav-bar>
     <ion-content padding="true" class="has-header" style="background: #eeeeee">
         <form id="cadastro-form1" class="list" name="cadastroForm">
             <div class="list">
@@ -49,8 +50,7 @@
             <div ng-show="cadastroForm.senha1.$error.required && cadastroForm.senha1.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
                 Campo senha é inválido!
             </div>
-            <div ng-show="cadastroForm.senha2.$error.required && cadastroForm.senha2.$dirty && cadastroForm.senha2 != cadastroForm.senha1"
-                class="ion-alert-circled" style="color: #ff0000; text-align: center;">
+            <div ng-show="cadastroForm.senha2.$error.required && cadastroForm.senha2.$dirty && cadastroForm.senha2 != cadastroForm.senha1" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
                 Campo confirma senha é inválido!
             </div>
             <div ng-show="cadastroForm.estado.$error.required && cadastroForm.estado.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
@@ -60,8 +60,7 @@
                 Campo senha é inválido!
             </div>
             <div class="spacer" style="width: 300px; height: 18px;"></div>
-            <button ng-disabled="cadastroForm.$invalid" ui-sref="login" id="cadastro-button4" style="border-radius:9px 9px 9px 9px;"
-                class="button tda-btn-energized  button-block" ng-click="cadastrarUsuario(inscrito)">Confirmar Cadastro</button>
+            <button ng-disabled="cadastroForm.$invalid" ui-sref="login" id="cadastro-button4" style="border-radius:9px 9px 9px 9px;" class="button tda-btn-energized  button-block" ng-click="cadastrarUsuario(inscrito)">Confirmar Cadastro</button>
         </form>
         <div id="cadastro-button-bar1" class="button-bar"></div>
     </ion-content>

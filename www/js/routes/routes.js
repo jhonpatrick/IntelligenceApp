@@ -1,56 +1,66 @@
-angular.module('app.routes', [])
-.config(function ($stateProvider, $urlRouterProvider) { 
- 
- $stateProvider
- 
-      .state('login', {
+app.config(function($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+
+        .state('apresentacao', {
+        url: '/apresentacaoPage',
+        templateUrl: 'templates/apresentacao.html',
+        controller: 'apresentacaoCtrl'
+    })
+
+    .state('login', {
         url: '/loginPage',
         templateUrl: 'templates/login.html',
         controller: 'loginCtrl'
-      })
+    })
 
-      .state('cadastro', {
+    .state('cadastro', {
         url: '/cadastroPage',
         templateUrl: 'templates/cadastro.html',
         controller: 'cadastroCtrl'
-      })
+    })
 
-      .state('intelligence', {
+    .state('intelligence', {
+        cache: false,
         url: '/menuIntelligence',
         templateUrl: 'templates/intelligence.html',
         controller: 'intelligenceCtrl'
-      })
+    })
 
-      .state('perfil', {
+    .state('perfil', {
         url: '/perfilPage',
         templateUrl: 'templates/perfil.html',
         controller: 'perfilCtrl'
-      })
+    })
 
-      .state('edtPerfilInc', {
+    .state('perfil.intelligence', {
+        url: '/menuIntelligence',
+        templateUrl: 'templates/perfil.html',
+        controller: 'perfilCtrl'
+    })
+
+    .state('edtPerfilInc', {
         url: '/edtPerfilIncPage',
         templateUrl: 'templates/edtPerfilInc.html',
         controller: 'edtPerfilIncCtrl'
-      })
+    })
 
-      .state('intelligence.inscrevaSe', {
-        url: '/inscrevasePage',
-        views: {
-          'menuView': {
-            templateUrl: 'templates/inscrevaSe.html',
-            controller: 'inscrevaSeCtrl'
-          }
-        }
-      })
+    .state('eventos', {
+        url: '/eventosPage',
+        templateUrl: 'templates/eventos.html',
+        controller: 'eventosCtrl'
+    })
 
-      .state('intelligence.comprovantes', {
+    .state('inscrevaSe', {
+        url: '/inscrevaSePage',
+        templateUrl: 'templates/inscrevaSe.html',
+        controller: 'inscrevaSeCtrl'
+    })
+
+    .state('comprovantes', {
         url: '/comprovantesPage',
-        views: {
-          'menuView': {
-            templateUrl: 'templates/comprovantes.html',
-            controller: 'comprovantesCtrl'
-          }
-        }
-      })
-    $urlRouterProvider.otherwise('/loginPage')
-})
+        templateUrl: 'templates/comprovantes.html',
+        controller: 'comprovantesCtrl'
+    })
+    $urlRouterProvider.otherwise('/apresentacaoPage');
+});

@@ -1,44 +1,74 @@
+<!DOCTYPE html>
 <ion-side-menus>
-  <ion-side-menu-content>
-    <ion-nav-view name="menuView" animation="slide-left-right">
-    </ion-nav-view>
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-buttons side="left">
-        <button class="button button-icon icon ion-navicon" menu-toggle="left"></button>
-      </ion-nav-buttons>
-      <ion-nav-title class="title">{{inicio}}</ion-nav-title>
-      <ion-nav-buttons side="right">
-        <button class="button button-clear button-icon icon ion-android-notifications" ng-click="openPopover($event)"></button>
-      </ion-nav-buttons>
-    </ion-nav-bar>
-  </ion-side-menu-content>
-  <ion-side-menu side="left" expose-aside-when="large">
-    <ion-content padding="true" style="top:0px !important; background-color: #383D46" class="side-menu-left ">
-      <div class="spacer" style="width: 248px; height: 20px;"></div>
-      <div>
-        <img src="img/logo_larg.png" width="85%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
-      </div>
-      <div class="spacer" style="width: 248px; height: 20px;"></div>
-      <div class="list" id="intelligence-list1">
-        <div class="item item-icon-left tda-list-item" id="intelligence-list-item1" menu-close="" ng-click="carregarInicio()">
-          <i class="icon ion-home"></i>Início
-        </div>
-        <div class="item item-icon-left tda-list-item" id="intelligence-list-item2" menu-close="" ng-click="carregarPerfil()">
-          <i class="icon ion-android-person"></i>Perfil
-        </div>
-        <div class="item item-icon-left tda-list-item" id="intelligence-list-item3" ui-sref="intelligence.inscrevaSe" menu-close="">
-          <i class="icon ion-android-calendar"></i>Inscreva-se
-        </div>
-        <div class="item item-icon-left tda-list-item" id="intelligence-list-item4">
-          <i class="icon icon ion-android-list"></i>Eventos
-        </div>
-        <div class="item item-icon-left tda-list-item" id="intelligence-list-item5" ui-sref="intelligence.comprovantes" menu-close="">
-          <i class="icon ion-android-document"></i>Comprovantes
-        </div>
-        <div class="item item-icon-left tda-list-item" id="intelligence-list-item7" menu-close="" ng-click="sairApp()">
-          <i class="icon ion-power"></i>Sair
-        </div>
-      </div>
-    </ion-content>
-  </ion-side-menu>
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-buttons side="left">
+                <button class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+            <ion-nav-title class="title">{{inicio}}</ion-nav-title>
+            <ion-nav-buttons side="right">
+                <button class="button button-clear button-icon icon ion-android-notifications" ng-click="openPopover($event)"></button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuView" animation="slide-left-right">
+            <ion-view id="page3">
+                <ion-content padding="true" class="has-header" style="background: #eeeeee" scroll="true">
+                    <div class="card">
+                        <div class="item item-divider item-icon-right" style="border: 1px solid rgba(0, 0, 0, .1)">
+                            <h2 id="nomeEvento" style="text-align: left; color: #757575; ">{{evento.nome}}</h2>
+                            <a href="javascript:void(0);" ng-click="compartilharEvento()"><i class="icon ion-android-share-alt placeholder-icon" style="font-size: 25px;"></i></a>
+                        </div>
+                        <div class="item item-text-wrap">
+                            <div class="item item-image">
+                                <img src="{{evento.img}}" width="80%" height="auto" style="display: block; margin-left: auto; margin-right: auto; background-color: #eee; border-color: #ccc;">
+                            </div>
+                            <div class="spacer" style="height: 15px;"></div>
+                            <p style="text-align: justify; font-size: 12px;" id="detalEvento">{{evento.descricao}}</p>
+                            <div class="spacer" style="height: 5px;"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: 12px;"><strong>Data de Início: </strong></p>
+                                    <p id="dataInicioEven" style="font-size: 12px;">{{evento.data_inicio}}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size: 12px;"><strong>Data de Termino: </strong></p>
+                                    <p id="dataFimEven" style="font-size: 12px;">{{evento.data_fim}}</p>
+                                </div>
+                            </div>
+                            <button id="bntInscreverSe" style="color:#FFFFFF;border-radius:9px 9px 9px 9px;" class="button tda-btn-energized button-block" ng-click="inscreverSe()">Inscreva-se</button>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" expose-aside-when="large">
+        <ion-content padding="true" style="top:0px !important; background-color: #383D46" class="side-menu-left ">
+            <div class="spacer" style="width: 248px; height: 20px;"></div>
+            <div>
+                <img src="img/logo_larg.png" width="85%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+            </div>
+            <div class="spacer" style="width: 248px; height: 20px;"></div>
+            <div class="list" id="intelligence-list1">
+                <div class="item item-icon-left tda-list-item" id="intelligence-list-item1" menu-close="" ng-click="carregarInicio()">
+                    <i class="icon ion-home"></i>Início
+                </div>
+                <div class="item item-icon-left tda-list-item" id="intelligence-list-item2" menu-close="" ng-click="carregarPerfil()">
+                    <i class="icon ion-android-person"></i>Perfil
+                </div>
+                <div class="item item-icon-left tda-list-item" id="intelligence-list-item3" menu-close="" ng-click="carregarInscrevaSe()">
+                    <i class="icon ion-android-calendar"></i>Inscreva-se
+                </div>
+                <div class="item item-icon-left tda-list-item" id="intelligence-list-item4" menu-close="" ng-click="carregarEventos()">
+                    <i class="icon icon ion-android-list"></i>Eventos
+                </div>
+                <div class="item item-icon-left tda-list-item" id="intelligence-list-item5" menu-close="" ng-click="carregarComprovantes()">
+                    <i class="icon ion-android-document"></i>Comprovantes
+                </div>
+                <div class="item item-icon-left tda-list-item" id="intelligence-list-item7" menu-close="" ng-click="sairApp()">
+                    <i class="icon ion-power"></i>Sair
+                </div>
+            </div>
+        </ion-content>
+    </ion-side-menu>
 </ion-side-menus>

@@ -10,12 +10,14 @@
     padding-top: 0px !important;
 }
 
-ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+ion-list.manual-list-fullwidth div.list,
+.list.card.manual-card-fullwidth {
     margin-left: -10px;
     margin-right: -10px;
 }
 
-ion-list.manual-list-fullwidth div.list > .tda-item, .list.card.manual-card-fullwidth > .tda-item {
+ion-list.manual-list-fullwidth div.list>.tda-item,
+.list.card.manual-card-fullwidth>.tda-item {
     border-radius: 0px;
     border-left: 0px;
     border-right: 0px;
@@ -42,7 +44,8 @@ ion-list.manual-list-fullwidth div.list > .tda-item, .list.card.manual-card-full
     text-decoration: none;
 }
 
-.tda-btn-energized.active, .tda-btn-energized.activated {
+.tda-btn-energized.active,
+.tda-btn-energized.activated {
     background-color: #d17300;
 }
 
@@ -51,7 +54,8 @@ ion-list.manual-list-fullwidth div.list > .tda-item, .list.card.manual-card-full
     float: left;
 }
 
-.tda-btn-link.active, .tda-btn-link.activated {
+.tda-btn-link.active,
+.tda-btn-link.activated {
     background-color: transparent;
 }
 
@@ -59,6 +63,10 @@ ion-list.manual-list-fullwidth div.list > .tda-item, .list.card.manual-card-full
     background-color: #383D46;
     color: #fff;
     border: none;
+}
+
+.tda-background {
+    background: #e59100;
 }
 
 .tda-checkbox {
@@ -72,6 +80,7 @@ ion-list.manual-list-fullwidth div.list > .tda-item, .list.card.manual-card-full
 
 .tda-footer {
     position: static;
+    display: inline-block;
     bottom: 0px;
     width: 100%;
     height: 50px;
@@ -79,6 +88,13 @@ ion-list.manual-list-fullwidth div.list > .tda-item, .list.card.manual-card-full
 }
 
 .tda-img-redondo {
+    width: 120px;
+    height: 130px;
+    box-shadow: -1px 1px 3px #ddd;
+    background-position: center;
+}
+
+.tda-camera-perfil {
     width: 100%;
     height: 100%;
     box-shadow: -1px 1px 3px #ddd;
@@ -110,3 +126,7 @@ ion-list.manual-list-fullwidth div.list > .tda-item, .list.card.manual-card-full
     background-color: rgba(0, 0, 0, .5);
 }
 
+.tda-img-border:hover {
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 0 25px #53a7ea;
+}

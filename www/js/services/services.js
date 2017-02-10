@@ -1,5 +1,3 @@
-angular.module('app.services', [])
+app.factory('BlankFactory', [function() {}]);
 
-  .factory('BlankFactory', [function () {}])
-
-  .service('BlankService', [function () {}])
+app.service('BlankService', [function() {}]);
