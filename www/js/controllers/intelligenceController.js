@@ -62,7 +62,7 @@ app.controller('intelligenceCtrl', ['$scope', '$stateParams', '$http',
         // funcção para sair do app
         $scope.sairApp = function() {
                 localStorage.clear();
-                $location.path('/loginPage');
+                $location.path('/apresentacaoPage');
                 var tamanho = localStorage.length;
                 console.log('Qnt de dados salvos no localStorage = ' + tamanho);
             }
