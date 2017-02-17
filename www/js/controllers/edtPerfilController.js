@@ -4,6 +4,7 @@ app.controller('edtPerfilIncCtrl', ['$scope', '$stateParams', '$http',
     function($scope, $stateParams, $http, $cordovaToast,
         $cordovaNetwork, $ionicLoading, $ionicPopup, $location, $timeout, $q, $cordovaCamera, $ionicActionSheet) {
         $scope.edtPerfil = 'Editar Perfil';
+        var empresa = window.localStorage.getItem('empresa');
         var usuario = JSON.parse(window.localStorage.getItem('usuario'));
         var inscrito = JSON.parse(window.localStorage.getItem('inscrito'));
         var estados = JSON.parse(window.localStorage.getItem('estados'));
@@ -21,14 +22,14 @@ app.controller('edtPerfilIncCtrl', ['$scope', '$stateParams', '$http',
                 if (imgPerfilInscri === '') {
                     iconPerfil.src = 'img/user_male.png';
                 } else {
-                    iconPerfil.src = 'http://tda.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri;
+                    iconPerfil.src = 'http://' + empresa + '.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri;
                 }
             }
             if (inscrito.sexo === 'F') {
                 if (imgPerfilInscri === '') {
                     iconPerfil.src = 'img/user_female.png';
                 } else {
-                    iconPerfil.src = 'http://tda.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri;
+                    iconPerfil.src = 'http://' + empresa + '.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri;
                 }
             }
         }

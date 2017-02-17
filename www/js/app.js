@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ionic', 'ngCordova']);
+var app = angular.module('app', ['ionic', 'ngCordova', 'ngCordovaOauth']);
 
 app.run(function($ionicPlatform, $ionicHistory, $state) {
     $ionicPlatform.ready(function() {

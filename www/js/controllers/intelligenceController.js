@@ -19,7 +19,7 @@ app.controller('intelligenceCtrl', ['$scope', '$stateParams', '$http',
         function loadingHide() {
             $ionicLoading.hide();
         }
-
+        var empresa = window.localStorage.getItem('empresa');
         // funcção para mandar pro Perfil
         $scope.carregarPerfil = function() {
             var typeCon = $cordovaNetwork.getNetwork();
@@ -27,35 +27,33 @@ app.controller('intelligenceCtrl', ['$scope', '$stateParams', '$http',
             var offline = $cordovaNetwork.isOffline();
             // se está conectado -  Verifique o tipo de conexão
             if (online) {
-                if (typeCon == 'wifi') {
-                    var usuario = JSON.parse(window.localStorage.getItem('usuario'));
-                    var idInsc = usuario.id;
-                    console.log('idInsc - ' + idInsc);
-                    var configRequestHttp = {
-                        method: 'POST',
-                        url: 'http://tda.intelligenceeventos.com.br/app_participante/carregarPerfil.php',
-                        timeout: 50000,
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        data: { idInsc: idInsc }
-                    };
-                    loadingShow('Carregando Perfil...');
-                    // post
-                    $http(configRequestHttp).then(function successCallback(data) {
-                        console.log('Requisição wifi deu certo');
-                        var insc = data.data;
-                        // /adrciona o novo inscrito
-                        localStorage.setItem('inscrito', JSON.stringify(insc));
-                        loadingHide();
-                        $location.path('/perfilPage');
-                    }, function errorCallback(data) {
-                        var retorno = data.data;
-                        console.log('Retorno Serv = ' + retorno);
-                        loadingHide();
-                        // msg de erro
-                        $cordovaToast.show('Serviço indisponível no momento. Tente mais tarde!', 'long', 'center');
-                        console.log('Requisição wifi Falhou');
-                    })
-                }
+                var usuario = JSON.parse(window.localStorage.getItem('usuario'));
+                var idInsc = usuario.id;
+                console.log('idInsc - ' + idInsc);
+                var configRequestHttp = {
+                    method: 'POST',
+                    url: 'http://' + empresa + '.intelligenceeventos.com.br/app_participante/carregarPerfil.php',
+                    timeout: 50000,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                    data: { idInsc: idInsc }
+                };
+                loadingShow('Carregando Perfil...');
+                // post
+                $http(configRequestHttp).then(function successCallback(data) {
+                    console.log('Requisição wifi deu certo');
+                    var insc = data.data;
+                    // /adrciona o novo inscrito
+                    localStorage.setItem('inscrito', JSON.stringify(insc));
+                    loadingHide();
+                    $location.path('/perfilPage');
+                }, function errorCallback(data) {
+                    var retorno = data.data;
+                    console.log('Retorno Serv = ' + retorno);
+                    loadingHide();
+                    // msg de erro
+                    $cordovaToast.show('Serviço indisponível no momento. Tente mais tarde!', 'long', 'center');
+                    console.log('Requisição wifi Falhou');
+                })
             }
         }
 
@@ -128,7 +126,7 @@ app.controller('intelligenceCtrl', ['$scope', '$stateParams', '$http',
         //JSON Eventos
         $scope.evento = {
             nome: "SEIFPI 2017",
-            img: "http://tda.intelligenceeventos.com.br/imagens/banner_eventos/588a4232191ec.png",
+            img: "http://" + empresa + ".intelligenceeventos.com.br/imagens/banner_eventos/588a4232191ec.png",
             descricao: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             data_inicio: "25/12/2017",
             data_fim: "30/12/2017"

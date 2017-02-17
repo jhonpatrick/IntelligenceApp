@@ -19,6 +19,7 @@ app.controller('perfilCtrl', ['$scope', '$stateParams', '$http',
         $scope.carregarInicio = function() {
             $location.path('/menuIntelligence')
         }
+        var empresa = window.localStorage.getItem('empresa');
         var usuario = JSON.parse(window.localStorage.getItem('usuario'))
         var inscrito = JSON.parse(window.localStorage.getItem('inscrito'))
         var iconSexoClass = document.getElementById('idIconSexo')
@@ -32,7 +33,7 @@ app.controller('perfilCtrl', ['$scope', '$stateParams', '$http',
             if (imgPerfilInscri === 'img/av.png') {
                 iconPerfil.src = 'img/user_male.png'
             } else {
-                iconPerfil.src = 'http://tda.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri
+                iconPerfil.src = 'http://' + empresa + '.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri
             }
         }
         if (inscrito.sexo === 'F') {
@@ -41,11 +42,12 @@ app.controller('perfilCtrl', ['$scope', '$stateParams', '$http',
             if (imgPerfilInscri === 'img/av.png') {
                 iconPerfil.src = 'img/user_female.png'
             } else {
-                iconPerfil.src = 'http://tda.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri
+                iconPerfil.src = 'http://' + empresa + '.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri
             }
         }
 
         $scope.carregarEdtPerfil = function() {
+
             var typeCon = $cordovaNetwork.getNetwork()
             var online = $cordovaNetwork.isOnline()
             var offline = $cordovaNetwork.isOffline()
@@ -54,7 +56,7 @@ app.controller('perfilCtrl', ['$scope', '$stateParams', '$http',
                 if (typeCon == 'wifi') {
                     var configRequestHttp = {
                         method: 'GET',
-                        url: 'http://tda.intelligenceeventos.com.br/app_participante/carregarUfInsc.php',
+                        url: 'http://' + empresa + '.intelligenceeventos.com.br/app_participante/carregarUfInsc.php',
                         timeout: 50000,
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
