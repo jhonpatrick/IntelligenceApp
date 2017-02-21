@@ -4,17 +4,6 @@ app.controller('apresentacaoCtrl', ['$scope', '$stateParams', '$http',
     function($scope, $stateParams, $http, $cordovaToast,
         $cordovaNetwork, $ionicLoading, $ionicPopup, $location, $timeout, $q) {
 
-
-        // var imgLogo = document.getElementById('imgLogo');
-
-        // var intervalo = window.setInterval(function() {
-        //     imgLogo.className = 'tda-img-border:houver';
-        // }, 50);
-
-        // window.setTimeout(function() {
-        //     clearInterval(intervalo);
-        // }, 3000);
-
         function loadingShow($msg) {
             $ionicLoading.show({
                 template: $msg,

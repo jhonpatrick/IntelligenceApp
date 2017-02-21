@@ -11,60 +11,49 @@
     </ion-nav-bar>
     <ion-content scroll="true" padding="true" class="has-header" style="background-image: url('img/login_fundo_quadrado_2.jpg'); background-size: cover">
         <form id="cadastro-form1" class="list" name="cadastroForm">
-            <div class="list" style="background-color: #FFF;">
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Nome completo:</span>
+            <div class="list list-inset" style="background-color: #FFF;">
+                <label class="item item-input ">
                     <input type="text" placeholder="Nome Completo:" ng-required="true" ng-model="inscrito.nome" name="nome">
                 </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Email:</span>
-                    <input type="email" placeholder="Email:" ng-required="true" ng-model="inscrito.email" name="email">
+                <label class="item item-input item-select" id="perfil-select2">
+                    <span class="input-label" style="color: #b3b3b3; font-size: 14px;">UF:</span>
+                        <select id="idSelectEstado" ng-required="true" ng-model="ufEstados.estados" ng-change="listarCidades()">
+                            <option ng-hide="true" value="">selecione um estado</option>
+                            <option ng-repeat="uf in ufEstados" value="{{uf.id}}">{{uf.uf}}</option>
+                        </select>
                 </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Senha:</span>
-                    <input type="password" placeholder="Senha:" ng-required="true" ng-model="inscrito.senha1" name="senha1">
-                </label>
-
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Confirmar Senha:</span>
-                    <input type="password" placeholder="Confirmar Senha:" ng-required="true" ng-model="inscrito.senha2" name="senha2">
-                </label>
-                <label class="item item-select" id="cadastro-select1">
-                    <span class="input-label">Estado</span>
-                    <select ng-required="true" ng-model="inscrito.estado" name="estado">
-                        <option ng-hide="true">Selecione um Estado</option>
+                <label class="item item-input item-select" id="cadastro-select2">
+                    <span class="input-label" style="color: #b3b3b3; font-size: 14px;">Cidade:</span>
+                    <select ng-required="true" ng-model="cidades.cidade" name="cidade">
+                        <option ng-hide="true" value="">Selecione uma Cidade</option>
+                        <option ng-repeat="cidade in cidades" value="{{cidade.id}}">{{cidade.nome}}</option>
                     </select>
                 </label>
-                <label class="item item-select" id="cadastro-select2">
-                    <span class="input-label">Cidade</span>
-                    <select ng-required="true" ng-model="inscrito.cidade" name="cidade">
-                        <option ng-hide="true">Selecione uma Cidade</option>
+                <label class="item item-input item-button-right">
+                    <input type="email" placeholder="Email:" ng-required="true" ng-model="inscrito.email" name="email" ng-blur="verificaEmail()">
+                    <button ng-show="cadastroForm.email.$invalid && cadastroForm.email.$dirty" type="button" class="button button-clear icon ion-alert-circled" style="color: #ff0000;" ng-click="myToast()"></button>
+                </label>
+                <label class="item item-input item-button-right">
+                    <input type="password" placeholder="Senha:" ng-required="true" ng-model="inscrito.senha1" name="senha1" ng-minlength="6" ng-maxlength="12">
+                    <button ng-show="cadastroForm.senha1.$error.required && cadastroForm.senha1.$dirty && cadastroForm.senha1.$error.minlength  && cadastroForm.senha1.$error.maxlength" 
+                        type="button" class="button button-clear icon ion-alert-circled" style="color: #ff0000;">
+                        </button>
+                </label>
+                <label class="item item-input item-button-right">
+                    <input type="password" placeholder="Confirmar Senha:" ng-required="true" ng-model="inscrito.senha2" name="senha2" ng-minlength="6" ng-maxlength="12">
+                    <button ng-show="cadastroForm.senha2.$error.required && cadastroForm.senha2.$dirty && cadastroForm.senha2.$error.minlength && cadastroForm.senha2.$error.maxlength"
+                         type="button" class="button button-clear icon ion-alert-circled" style="color: #ff0000;">
+                    </button>
+                </label>
+                <label class="item item-input item-select" id="cadastro-select">
+                    <span class="input-label" style="color: #b3b3b3; font-size: 14px;">Plataforma:</span>
+                    <select ng-required="true" ng-model="event.nome" name="plataforma">
+                        <option ng-hide="true" value="">Selecione uma plataforma</option>
+                        <option ng-repeat="evento in event">{{evento.nome}}</option>
                     </select>
                 </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Celular</span>
-                    <input type="tel" placeholder="Digite seu celular" ng-required="true" ng-model="inscrito.celular" name="celular">
-                </label>
             </div>
-            <div class="spacer" style="height: 5px;"></div>
-            <div ng-show="cadastroForm.email.$invalid && cadastroForm.email.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
-                Campo email é inválido!
-            </div>
-            <div ng-show="cadastroForm.senha1.$error.required && cadastroForm.senha1.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
-                Campo senha é inválido!
-            </div>
-            <div ng-show="cadastroForm.senha2.$error.required && cadastroForm.senha2.$dirty && cadastroForm.senha2 != cadastroForm.senha1" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
-                Campo confirma senha é inválido!
-            </div>
-            <div ng-show="cadastroForm.estado.$error.required && cadastroForm.estado.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
-                Campo senha é inválido!
-            </div>
-            <div ng-show="cadastroForm.cidade.$error.required && cadastroForm.cidade.$dirty" class="ion-alert-circled" style="color: #ff0000; text-align: center;">
-                Campo senha é inválido!
-            </div>
-            <div class="spacer" style="width: 300px; height: 18px;"></div>
-            <button ng-disabled="cadastroForm.$invalid" ui-sref="login" id="cadastro-button4" style="border-radius:9px 9px 9px 9px;" class="button tda-btn-energized  button-block" ng-click="cadastrarUsuario(inscrito)">Confirmar Cadastro</button>
         </form>
-        <div id="cadastro-button-bar1" class="button-bar"></div>
+        <button ng-disabled="cadastroForm.$invalid" id="bntCadastarUsuario" class="button tda-btn-energized button-block" ng-click="cadastrarUsuario(inscrito)">Efetuar Cadastro</button>
     </ion-content>
 </ion-view>

@@ -1,11 +1,5 @@
-app.controller('loginCtrl', ['$scope', '$stateParams', '$http',
-    '$cordovaToast', '$cordovaNetwork', '$ionicLoading', '$ionicPopup', '$location', '$timeout', '$q', '$cordovaOauth',
-
-    function($scope, $stateParams, $http, $cordovaToast,
-        $cordovaNetwork, $ionicLoading, $ionicPopup, $location, $timeout, $q, $cordovaOauth) {
-        $scope.carregarCadastro = function() {
-            $location.path('/cadastroPage')
-        }
+app.controller('loginCtrl', ['$scope', '$stateParams', '$http', '$cordovaToast', '$cordovaNetwork', '$ionicLoading', '$ionicPopup', '$location', '$timeout', '$q', '$cordovaOauth', '$window',
+    function($scope, $stateParams, $http, $cordovaToast, $cordovaNetwork, $ionicLoading, $ionicPopup, $location, $timeout, $q, $cordovaOauth, $window) {
 
         function loadingShow(msg) {
             $ionicLoading.show({
@@ -40,8 +34,9 @@ app.controller('loginCtrl', ['$scope', '$stateParams', '$http',
         $scope.salvaConexao = { checked: false }
             // tentativas de login
         var tentativasLogin = 0
-        $scope.nomeEventos = JSON.parse(window.localStorage.getItem('eventos'))
-            // verificando conexão com internet
+        var evt = JSON.parse(window.localStorage.getItem('eventos'))
+        $scope.nomeEventos = evt;
+        // verificando conexão com internet
         var type = $cordovaNetwork.getNetwork()
         var isOnline = $cordovaNetwork.isOnline()
         var isOffline = $cordovaNetwork.isOffline()
@@ -160,98 +155,40 @@ app.controller('loginCtrl', ['$scope', '$stateParams', '$http',
 
         // login com Facebook
         $scope.facebookSignIn = function() {
-            if (isOnline) {
-                if (type == 'wifi') {
-                    // FACEBOO_APP_ID = "310225595982178"
-                    // EMAIL_APP = "contato@tdainformatica.com.br"
-                    $cordovaOauth.facebook('310225595982178', ['email']).then(
-                        function successCallback(result) {
-                            $http.get('https://graph.facebook.com/v2.2/me', {
-                                params: {
-                                    access_token: result.access_token,
-                                    fields: 'id,name,gender,location,website,picture,relationship_status',
-                                    format: 'json'
-                                }
-                            }).then(
-                                function(result) {
-                                    localStorage.setItem('usuarioFb', JSON.stringify(result.data))
-                                    $cordovaToast.show('Login com sucessso!', 'long', 'center')
-                                },
-                                function(error) {
-                                    $cordovaToast.show('Desculpe. Ocorreu um problema no seu login. Tente novamente!', 'long', 'center')
-                                });
-                        },
-                        function errorCallback(error) {
-                            $cordovaToast.show('Falha no login. Tente novamente!', 'long', 'center')
-                        });
-                }
-
-                // verificando se o tipo de conexão é
-                if (type == 'CELL_3G' || type == 'CELL_4G') {
-                    // A confirm dialog
-                    var confirmPopup = $ionicPopup.confirm({
-                        title: 'Alerta de Uso de Dados',
-                        template: 'Deseja continuar com o uso de Dados Móveis?'
-                    })
-
-                    confirmPopup.then(function(res) {
-                        if (res) {
-                            // FACEBOO_APP_ID = "310225595982178"
-                            // EMAIL_APP = "contato@tdainformatica.com.br"
-                            $cordovaOauth.facebook('310225595982178', ['email']).then(
-                                function successCallback(result) {
-                                    var userFb = JSON.stringify(result)
-                                    alert('Auth Success..!!' + result)
-                                    console.log('emailFb -> ' + userFb)
-                                },
-                                function errorCallback(error) {
-                                    alert('Auth Failed..!!' + error)
-                                })
-                        }
-                    })
-                }
-            }
+            alert("Ops.. :(");
         }
 
-        // login com o Google
-        $scope.googleSignIn = function() {
-            if (isOnline) {
-                if (type == 'wifi') {
-                    // FACEBOO_APP_ID = "310225595982178"
-                    // EMAIL_APP = "contato@tdainformatica.com.br"
-                    $cordovaOauth.google('310225595982178', ['email']).then(
-                        function successCallback(result) {
-                            var userFb = JSON.stringify(result)
-                            alert('Auth Success..!!' + result)
-                            console.log('emailFb -> ' + userFb.email)
-                        },
-                        function errorCallback(error) {
-                            alert('Auth Failed..!!' + error)
-                        })
-                }
+        $scope.carregarCadastro = function() {
 
-                // verificando se o tipo de conexão é
-                if (type == 'CELL_3G' || type == 'CELL_4G') {
-                    // A confirm dialog
-                    var confirmPopup = $ionicPopup.confirm({
-                        title: 'Alerta de Uso de Dados',
-                        template: 'Deseja continuar com o uso de Dados Móveis?'
-                    })
-
-                    confirmPopup.then(function(res) {
-                        if (res) {
-                            // FACEBOO_APP_ID = "310225595982178"
-                            // EMAIL_APP = "contato@tdainformatica.com.br"
-                            $cordovaOauth.facebook('310225595982178', ['email']).then(
-                                function successCallback(result) {
-                                    var userFb = result.data
-                                    alert('Auth Success..!!' + result)
-                                    console.log('emailFb -> ' + userFb.email)
-                                },
-                                function errorCallback(error) {
-                                    alert('Auth Failed..!!' + error)
-                                })
+            var typeCon = $cordovaNetwork.getNetwork()
+            var online = $cordovaNetwork.isOnline()
+            var offline = $cordovaNetwork.isOffline()
+                // se está conectado -  Verifique o tipo de conexão
+            if (online) {
+                if (typeCon == 'wifi') {
+                    var configRequestHttp = {
+                        method: 'GET',
+                        url: 'http://tda.intelligenceeventos.com.br/app_participante/carregarUfInsc.php',
+                        timeout: 50000,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                         }
+                    }
+                    loadingShow('Aguarde...')
+                        // post
+                    $http(configRequestHttp).then(function successCallback(data) {
+                        console.log('Requisição wifi deu certo - data.data -> ', data.data)
+                        var estados = data.data
+                        localStorage.setItem('estados', JSON.stringify(estados))
+                        loadingHide()
+                        $location.path('/cadastroPage')
+                    }, function errorCallback(data) {
+                        var retorno = data.data
+                        console.log('Retorno Serv = ' + retorno)
+                        loadingHide()
+                            // msg de erro
+                        $cordovaToast.show('Serviço indisponível no momento. Tente mais tarde!', 'long', 'center')
+                        console.log('Requisição wifi Falhou')
                     })
                 }
             }

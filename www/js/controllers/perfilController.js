@@ -63,7 +63,7 @@ app.controller('perfilCtrl', ['$scope', '$stateParams', '$http',
                         }
                     }
                     loadingShow('Aguarde...')
-                        // post
+                        // get
                     $http(configRequestHttp).then(function successCallback(data) {
                         console.log('Requisição wifi deu certo - data.data -> ', data.data)
                         var estados = data.data

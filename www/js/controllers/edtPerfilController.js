@@ -1,9 +1,21 @@
-app.controller('edtPerfilIncCtrl', ['$scope', '$stateParams', '$http',
-    '$cordovaToast', '$cordovaNetwork', '$ionicLoading', '$ionicPopup', '$location', '$timeout', '$q', '$cordovaCamera', '$ionicActionSheet',
+app.controller('edtPerfilIncCtrl', ['$scope', '$stateParams', '$http', '$cordovaToast', '$cordovaNetwork', '$ionicLoading', '$ionicPopup', '$location', '$timeout', '$q', '$cordovaCamera', '$ionicActionSheet',
 
-    function($scope, $stateParams, $http, $cordovaToast,
-        $cordovaNetwork, $ionicLoading, $ionicPopup, $location, $timeout, $q, $cordovaCamera, $ionicActionSheet) {
+    function($scope, $stateParams, $http, $cordovaToast, $cordovaNetwork, $ionicLoading, $ionicPopup, $location, $timeout, $q, $cordovaCamera, $ionicActionSheet) {
+
         $scope.edtPerfil = 'Editar Perfil';
+
+
+        function loadingShow(msg) {
+            $ionicLoading.show({
+                template: msg,
+                noBackdrop: false
+            })
+        }
+
+        function loadingHide() {
+            $ionicLoading.hide()
+        }
+
         var empresa = window.localStorage.getItem('empresa');
         var usuario = JSON.parse(window.localStorage.getItem('usuario'));
         var inscrito = JSON.parse(window.localStorage.getItem('inscrito'));
@@ -32,6 +44,7 @@ app.controller('edtPerfilIncCtrl', ['$scope', '$stateParams', '$http',
                     iconPerfil.src = 'http://' + empresa + '.intelligenceeventos.com.br/imagens/perfil_users/' + idUser + '/' + imgPerfilInscri;
                 }
             }
+            $scope.aux = inscrito.cidade;
         }
         getInscrito(inscrito);
         $scope.carregarPerfil = function() {
@@ -127,6 +140,33 @@ app.controller('edtPerfilIncCtrl', ['$scope', '$stateParams', '$http',
                 var cidadeSelecionado = idSelectCidade.options[idSelectCidade.selectedIndex].text;
                 // $location.path('/perfilPage')
             }
+        }
+
+        $scope.listarCidades = function() {
+            var idEstado = document.getElementById('idSelectEstado').value;
+            console.log("id->", idEstado);
+            var configRequestHttpPost = {
+                method: 'POST',
+                url: 'http://tda.intelligenceeventos.com.br/app_participante/carregarCidades.php',
+                timeout: 50000,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: { idEstado: idEstado }
+            }
+            loadingShow('Carregando...')
+                // post
+            $http(configRequestHttpPost).then(function successCallback(data) {
+                console.log('Requisição wifi deu certo - data.data -> ', data.data)
+                $scope.aux = "Selecione uma cidade"
+                $scope.cidades = data.data;
+                loadingHide()
+            }, function errorCallback(data) {
+                var retorno = data.data
+                console.log('Retorno Serv = ' + retorno)
+                loadingHide()
+                    // msg de erro
+                $cordovaToast.show('Serviço indisponível no momento. Tente mais tarde!', 'long', 'center')
+                console.log('Requisição wifi Falhou')
+            })
         }
     }
 ]);

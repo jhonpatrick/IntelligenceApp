@@ -48,17 +48,17 @@
                         </select>
                     </label>
                     <label class="item item-input item-select" id="perfil-select2">
-                        <span class="input-label">UF:</span>
-                        <select id="idSelectEstado" ng-required="true" ng-model="ufEstados.estados">
+                    <span class="input-label">UF:</span>
+                        <select id="idSelectEstado" ng-required="true" ng-model="ufEstados.estados" ng-change="listarCidades()">
                             <option ng-hide="true" value="">{{inscritos.uf}}</option>
-                            <option ng-repeat="uf in ufEstados">{{uf.uf}}</option>
+                            <option ng-repeat="uf in ufEstados" value="{{uf.id}}">{{uf.uf}}</option>
                         </select>
                     </label>
-                    <label class="item item-input item-select" id="perfil-select3">
+                    <label class="item item-select" id="cadastro-select2">
                         <span class="input-label">Cidade:</span>
-                        <select id="idSelectCidade" ng-required="true" ng-model="nomeCidades.opsCidades">
-                            <option ng-hide="true" value="">{{inscritos.cidade}}</option>
-                            <option ng-repeat="city in nomeCidades.opsCidades"></option>
+                        <select ng-required="true" ng-model="cidades.cidade" name="cidade">
+                            <option ng-hide="true" value="">{{aux}}</option>
+                            <option ng-repeat="cidade in cidades" value="{{cidade.id}}">{{cidade.nome}}</option>
                         </select>
                     </label>
                     <label class="item item-input">

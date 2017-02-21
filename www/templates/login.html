@@ -2,7 +2,7 @@
 <ion-view hide-nav-bar="true" id="page1">
     <ion-content padding="true" class="manual-ios-statusbar-padding" scroll="true" style="background-image: url('img/login_fundo_quadrado_2.jpg'); background-size: cover">
         <div>
-            <button class="button button-clear icon ion-help-circled placeholder-icon" style="right: 0px; border-radius:50%; position: absolute;"></button>
+            <button class="button button-clear button-icon icon ion-help-circled" style="right: 0px; border-radius:50%; position: absolute; font-size: 25px;"></button>
         </div>
         <div class="spacer" style="height: 3%;"></div>
         <div>
@@ -15,7 +15,7 @@
                         <i class="icon icon-left ion-calendar placeholder-icon" style="font-size: 25px"></i>
                     </span>
                     <select id="idSelectEvento" ng-required="true" ng-model="nomeEventos.nome">
-                        <option ng-hide="true" value="">Selecione seu evento</option>
+                        <option ng-hide="true" value="">Selecione uma plataforma</option>
                         <option ng-repeat="evento in nomeEventos">{{evento.nome}}</option>
                     </select>
                 </label>
@@ -44,7 +44,7 @@
                 <hr style="background: #eeeeee; width: 30%;">
             </div>
             <div class="row">
-                <button class="button button-outline  button-positive button-block" ng-click="facebookSignIn()" style="border-radius:9px 9px 9px 9px;">
+                <button class="button button-outline button-positive button-block" ng-click="facebookSignIn()" style="border-radius:9px 9px 9px 9px;">
                     <i class="icon ion-social-facebook"></i> Facebook</button>
             </div>
         </form>
